@@ -1,0 +1,60 @@
+version: "2"
+# Configure containers for RSuite 3.6 
+#
+
+volumes:
+  rsuiteData:
+  mlData:
+  mlWork:
+  rsuiteModules:
+  mysqlData:
+  rsuitePlugins:
+  
+services:
+
+  marklogic:
+     image: jkapadnis/centos6-marklogic7
+     container_name: marklogic
+     ports:
+       # CQ:
+       - 9100:8000
+       # Admin:
+       - 9101:8001
+       - 9102:8002
+       # RSuite xdbc app:
+       - 9136:9036
+       
+     volumes:
+       - mlData:/opt/data/forests:Z
+       - mlWork:/var/opt/MarkLogic:Z
+       - rsuiteModules:/opt/RSuite/modules_1_0:Z
+  
+  mysql:
+     image: mtirsel/mysql-5.1
+     container_name: mysql
+     environment:
+       - MYSQL_ROOT_PASSWORD=admin
+       - MYSQL_HOST=mysql
+     ports:
+       - 9306:3306
+
+     volumes:
+       - mysqlData:/var/lib/mysql:Z
+  
+  rsuite:
+     image: m1/rsuite:3.6
+     container_name: rsuite
+     ports:
+       - 9180:8080
+       
+     volumes:
+       - rsuiteData:/opt/rsuite/rsuite-data:Z
+       - rsuitePlugins:/opt/RSuite/plugins:Z
+       - rsuiteModules:/opt/RSuite/modules_1_0:Z
+     
+     depends_on:
+      - marklogic
+      - mysql
+     
+  
+   

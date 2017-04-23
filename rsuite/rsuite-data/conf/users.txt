@@ -1,0 +1,3 @@
+version:2               
+                
+admin:admin:The Administrator:admin@acmepublishing.com:RSuiteAdministrator
