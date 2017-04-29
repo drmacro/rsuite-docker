@@ -1,8 +1,8 @@
-FROM patrickmcelwee/marklogic-dependencies:7-latest
+FROM patrickmcelwee/marklogic-dependencies:8-latest
 
 MAINTAINER Eliot Kimber <ekimber@contrext.com>
 
-ARG INSTALLER=MarkLogic-6.0-6.x86_64.rpm
+ARG INSTALLER=MarkLogic-8.0-5.8-x86_64.dmg
 
 COPY ${INSTALLER} /tmp/MarkLogic.rpm
 COPY python /tmp/python
@@ -12,9 +12,10 @@ COPY python /tmp/python
 RUN python /tmp/python/setuptools/setup.py install && \
 	cd /tmp/python/requests && \
 	python setup.py install && \
-	cd / && \
-	yum -y install /tmp/MarkLogic.rpm && \
-	rm -rf /tmp/*
+	cd / 
+#	&& \
+#	yum -y install /tmp/MarkLogic.rpm && \
+#	rm -rf /tmp/*
 
 
 # Expose MarkLogic admin

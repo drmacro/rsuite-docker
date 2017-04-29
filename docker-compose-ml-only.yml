@@ -12,7 +12,6 @@ version: "2"
 #=======================================================
 
 volumes:
-  rsuiteData:
   mlData:
   mlWork:
   mysqlData:
@@ -39,33 +38,7 @@ services:
        - ${RSUITE_MODULES}:/opt/data/modules
        - backup:/var/opt/mlbackup
   
-  mysql:
-     image: mtirsel/mysql-5.1
-     container_name: mysql
-     environment:
-       - MYSQL_ROOT_PASSWORD=admin
-       - MYSQL_HOST=mysql
-     ports:
-       - 9306:3306
-
-     volumes:
-       - mysqlData:/var/lib/mysql:Z
-  
-  rsuite:
-     image: m1/rsuite:3.6
-     container_name: rsuite
-     ports:
-       - 9180:8080
-       
-     volumes:
-       - rsuiteData:/opt/rsuite/rsuite-data:Z
-       - ${RSUITE_PLUGINS}:/opt/RSuite/plugins:Z
-       - ${RSUITE_MODULES}:/opt/RSuite/modules_1_0:Z
-       - ${RSUITE_HOTFOLDERS}:/marklogic/RSuite-data/hotfolders:Z
-     
-     depends_on:
-      - marklogic
-      - mysql
-     
-  
+#
+# End of docker-compose file
+#
    

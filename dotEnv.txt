@@ -1,0 +1,3 @@
+RSUITE_MODULES=./rsuite/rsuite36/modules_1_0
+RSUITE_PLUGINS=./rsuite-plugins
+RSUITE_HOTFOLDERS=./rsuite-hotfolders

@@ -1,0 +1,25 @@
+version: "2"
+# Configure containers for RSuite 3.6 
+#
+
+volumes:
+  mysqlData:
+  backup:
+  
+services:
+
+  mysql:
+     image: mtirsel/mysql-5.1
+     container_name: mysql
+     environment:
+       - MYSQL_ROOT_PASSWORD=admin
+       - MYSQL_HOST=mysql
+     ports:
+       - 9306:3306
+
+     volumes:
+       - mysqlData:/var/lib/mysql:Z
+  
+     
+  
+   
