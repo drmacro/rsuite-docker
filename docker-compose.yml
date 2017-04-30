@@ -22,7 +22,7 @@ services:
 
   marklogic:
 #     image: jkapadnis/centos6-marklogic7
-     image: m1/ml:4.2
+     image: rsd/ml:4.2
      container_name: marklogic
      ports:
        # CQ:
@@ -52,7 +52,7 @@ services:
        - mysqlData:/var/lib/mysql:Z
   
   rsuite:
-     image: m1/rsuite:3.6
+     image: rsd/rsuite:3.6
      container_name: rsuite
      ports:
        - 9180:8080

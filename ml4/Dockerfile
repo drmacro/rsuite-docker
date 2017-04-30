@@ -9,12 +9,7 @@ ARG INSTALLER=marklogic_4.2-10.1_amd64.deb
 
 COPY ${INSTALLER} /tmp/MarkLogic.deb
 
-# Install python modules and MarkLogic
-#     wget http://ftp.us.debian.org/debian/pool/main/l/lsb/lsb-base_4.1+Debian8+deb7u1_all.deb && \
-# 
-#    apt-get -y install wget && \
-#    dpkg -i lsb-base_4.1+Debian8+deb7u1_all.deb && \
-#     rm lsb-base_4.1+Debian8+deb7u1_all.deb && \
+# Install lsb-base and MarkLogic:
     	
 RUN apt-get update && \
     apt-get -y install lsb-base && \
